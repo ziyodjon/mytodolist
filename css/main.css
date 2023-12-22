@@ -22,7 +22,10 @@ header h1 {
   margin-left: 56px;
   text-transform: uppercase;
 }
-
+.todo-lists-wrap{
+  height:350px;
+  overflow-y: scroll;
+}
 .todo-add-wrap {
   padding: 20px;
   background: rgb(186, 177, 242);
@@ -33,7 +36,7 @@ header h1 {
   margin: 0;
   border: none;
   border-radius: 0;
-  width: 70%;
+  width: 97%;
   padding: 10px;
   font-size: 16px;
   position: relative;
@@ -94,6 +97,10 @@ ul li.checked {
   text-decoration: line-through;
 }
 
+ul li.checked span {
+  color: #fff;
+}
+
 /* Add a "checked" mark when clicked on */
 ul li.checked::before {
   content: "";
@@ -108,15 +115,28 @@ ul li.checked::before {
   width: 7px;
 }
 
+/* ul li.checked i.check {
+  font-size: 23px;
+  position: absolute;
+  left: 13px;
+  top: 11px;
+} */
+
 /* Style the close button */
 .close {
+  color: #f44336;
   position: absolute;
   right: 0;
   top: 0;
-  padding: 12px 16px 12px 16px;
+  padding: 12px 16px 15px 16px;
 }
 
 .close:hover {
   background-color: #f44336;
   color: white;
+}
+
+.todo-lists-filter{
+  padding:20px;
+  background:rgb(186, 177, 242);
 }

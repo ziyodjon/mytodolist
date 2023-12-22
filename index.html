@@ -2,14 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <link
-      rel="stylesheet"
-      href="css/main.css"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/main.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"
@@ -23,42 +17,35 @@
     <div class="container">
       <header>
         <h1>
-          <i
-            class="fa fa-th-list"
-            aria-hidden="true"
-          ></i>
+          <i class="fa fa-th-list" aria-hidden="true"></i>
           My To Do lists
         </h1>
       </header>
       <div class="todo-add-wrap">
-        <input
-          type="text"
-          id="myInput"
-          placeholder="Type your text..."
-        />
-        <span
-          onclick="newElement()"
-          class="addBtn"
-          ><i
-            class="fa fa-plus-circle"
-            aria-hidden="true"
-          ></i>
-          Add</span
-        >
+        <input type="text" id="myInput" placeholder="Type your text..." />
       </div>
       <!--todo-add-wrap-->
 
       <div class="todo-lists-wrap">
         <ul id="myUL">
-          <li>Learn Javascript</li>
-          <li>Pay football</li>
-          <li>Meet George</li>
-          <li class="checked">Buy eggs</li>
-          <li>Read a book</li>
-          <li>Organize office</li>
         </ul>
+        
       </div>
-    </div>
-    <!--Container-->
+      <div class="todo-lists-filter">
+        <div class="todo-count">5 item left</div>
+
+        <div class="todo-status">
+          <a href="#" class="all">All</a>
+          <a href="#" class="aactive">Active</a>
+          <a href="#" class="completed">Completed</a>
+        </div>
+
+        <div class="todo-status-clear">
+          <a href="#" class="clear">Clear completed</a>
+        </div>
+
+      </div>
+    </div><!--Container-->
+    <script src="js/main.js"></script>
   </body>
 </html>
