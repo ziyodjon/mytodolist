@@ -95,6 +95,7 @@ ul li.checked {
   background: rgb(90, 90, 219);
   color: #fff;
   text-decoration: line-through;
+  margin-bottom:1px;
 }
 
 ul li.checked span {
@@ -139,4 +140,31 @@ ul li.checked::before {
 .todo-lists-filter{
   padding:20px;
   background:rgb(186, 177, 242);
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+.todo-lists-filter div{
+  width:34%;
+}
+
+.todo-lists-filter .todo-count{
+  text-align: left;
+}
+
+.todo-lists-filter .todo-status{
+  text-align: center;
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: nowrap;
+  height: 100%;
+}
+
+.todo-lists-filter .todo-status a{
+  width:30%;
+}
+
+.todo-lists-filter .todo-status-clear{
+  text-align: right;
 }
