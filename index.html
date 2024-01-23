@@ -22,12 +22,18 @@
         </h1>
       </header>
       <div class="todo-add-wrap">
-        <input type="text" id="myInput" placeholder="Type your text..." />
+        <form class="todo-add-form">
+          <input type="text" id="myInput" name="todoItem" placeholder="Type your text..." required/>
+        </form>
+        
       </div>
       <!--todo-add-wrap-->
 
       <div class="todo-lists-wrap">
-        <ul id="myUL">
+        <ul class="todo-lists">
+          <div>
+            <span>Список дел загружается......</span>
+          </div>
         </ul>
         
       </div>

@@ -98,6 +98,8 @@ ul li.checked {
   margin-bottom:1px;
 }
 
+
+
 ul li.checked span {
   color: #fff;
 }
@@ -114,6 +116,13 @@ ul li.checked::before {
   transform: rotate(45deg);
   height: 15px;
   width: 7px;
+}
+.todo-lists div {
+  font-size:40px;
+    text-align: center;
+    min-height: 350px;
+    padding: 150px 0 0 0;
+    color: #5a5adc;
 }
 
 /* ul li.checked i.check {
