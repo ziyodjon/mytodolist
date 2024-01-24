@@ -2,6 +2,7 @@ const todoAddForm = document.querySelector('.todo-add-form');
 const todoListArea = document.querySelector('.todo-lists');
 const todoItemsSortBtns = document.querySelectorAll('.todoItemsSortBtns');
 const todoLeftItems = document.querySelector('.todoLeftItems');
+const todoItemsClearCompletedBtn = document.querySelector('.todoItemsClearCompletedBtn');
 const todoItems = JSON.parse(localStorage.getItem('todoItems')) || [];
 
 
@@ -62,6 +63,17 @@ function todoLeftItemsCount(){
   todoLeftItems.innerHTML = `<span>${todoLeftItemsCount.length}</span> items left`;
 }
 
+function todoItemsClearCompleted(){
+    const todoItemsClearCompleted = todoItems.map((items,index,currentItems) => {
+        if(currentItems[index].id == items.id){
+          items.status = false;
+        }
+        return items;
+    });
+    saveToLocalStorage(todoItemsClearCompleted);
+    showTodoItems(todoItemsClearCompleted,todoListArea);
+}
+
 function saveToLocalStorage(items){
   localStorage.setItem('todoItems',JSON.stringify(items));
 }
@@ -72,6 +84,7 @@ todoListArea.addEventListener('click',changeItemStatus);
 todoItemsSortBtns.forEach((item) => {
   item.addEventListener('click',todoItemsSort);
 });
+todoItemsClearCompletedBtn.addEventListener('click',todoItemsClearCompleted);
 
 
 showTodoItems(todoItems,todoListArea);
