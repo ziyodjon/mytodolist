@@ -117,13 +117,13 @@ ul li.checked::before {
   height: 15px;
   width: 7px;
 }
-.todo-lists div {
+/* .todo-lists div {
   font-size:40px;
     text-align: center;
     min-height: 350px;
     padding: 150px 0 0 0;
     color: #5a5adc;
-}
+} */
 
 /* ul li.checked i.check {
   font-size: 23px;
