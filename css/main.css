@@ -67,7 +67,7 @@ ul {
 ul li {
   cursor: pointer;
   position: relative;
-  padding: 12px 8px 12px 40px;
+  padding: 0 0 0 40px;
   background: #eee;
   font-size: 18px;
   transition: 0.2s;
@@ -88,6 +88,9 @@ ul li:nth-child(odd) {
 /* Darker background-color on hover */
 ul li:hover {
   background: rgb(202 196 240);
+}
+ul li div{
+  padding: 12px 8px 12px 0;
 }
 
 /* When clicked on, add a background color and strike out text */
@@ -117,13 +120,14 @@ ul li.checked::before {
   height: 15px;
   width: 7px;
 }
-/* .todo-lists div {
-  font-size:40px;
+.todo-lists .dataLoading {
+  font-size: 40px;
     text-align: center;
-    min-height: 350px;
+    min-height: 200px;
     padding: 150px 0 0 0;
     color: #5a5adc;
-} */
+
+}
 
 /* ul li.checked i.check {
   font-size: 23px;
@@ -162,18 +166,31 @@ ul li.checked::before {
   text-align: left;
 }
 
-.todo-lists-filter .todo-status{
+.todoItemsSort .todoItemsSortBtns{
   text-align: center;
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: nowrap;
   height: 100%;
+  width: 32%;
+  background: #5a5adc;
+  border: 0;
+  padding: 6px 0;
+  color: #fff;
 }
 
-.todo-lists-filter .todo-status a{
-  width:30%;
-}
 
-.todo-lists-filter .todo-status-clear{
-  text-align: right;
+.todo-status-clear .todoItemsClearCompletedBtn{
+  float: right;
+  text-align: center;
+  height: 100%;
+  width: 49%;
+  background: #be26c5;
+  border: 0;
+  padding: 6px 0;
+  color: #fff;
+}
+.todoLeftItemsCount{
+  font-weight: bold;
+  background: #ff5f00;
+  padding: 5px 25px;
+  color: #fff;
+  display: inline-block;
 }

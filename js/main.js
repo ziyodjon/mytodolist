@@ -8,35 +8,23 @@ const deleteCurrentToDoItemBtn = document.querySelector('.close');
 const todoItems = JSON.parse(localStorage.getItem('todoItems')) || [];
 
 
-function todoAdd(event){
-  event.preventDefault();
-  const todoItemText = event.target.todoItem.value;
-  const todoItem = {
-    id:Date.now(),
-    text: todoItemText,
-    status:false,
-  };
-  todoItems.push(todoItem);
-  saveToLocalStorage(todoItems);
-  showTodoItems(todoItems,todoListArea);
-  this.reset();
-}
+
+// ALL FUNCTIONS
 
 function showTodoItems(items,todoListArea){
   todoListArea.innerHTML = '';
   items.forEach((item) => {
-    let li = document.createElement('li');
-    li.setAttribute('data-id', item.id);
-    let changeStatusBtn = document.createElement('div');
-    changeStatusBtn.setAttribute('class','todoCheckItem');
-    if(item.status) li.setAttribute('class', 'checked');
-    changeStatusBtn.innerHTML = item.text;
-    let delBtn = document.createElement('span');
-    delBtn.setAttribute('class', 'close fa fa-trash-o');
+    const todoItemList = document.createElement('li');
+    todoItemList.setAttribute('data-id', item.id);
+    const changeStatusBtn = document.createElement('div');
+    changeStatusBtn.classList.add('todoCheckItem');
+    if(item.status) todoItemList.classList.add('checked');
+    changeStatusBtn.textContent = item.text;
+    const delBtn = document.createElement('span');
+    delBtn.classList.add('close', 'fa', 'fa-trash-o');
     
-    li.appendChild(changeStatusBtn);
-    li.appendChild(delBtn);
-    todoListArea.appendChild(li);
+    todoItemList.append(changeStatusBtn,delBtn);
+    todoListArea.appendChild(todoItemList);
     changeStatusBtn.addEventListener('click',changeItemStatus);
     delBtn.addEventListener('click', deleteCurrentToDoItem);
   });
@@ -44,25 +32,16 @@ function showTodoItems(items,todoListArea){
 }
 
 function changeItemStatus(event){
-  // event.target.classList.toggle("checked");
-  // //const currentItemId = Number(event.target.dataset.id);
-  // const newToDoItems = todoItems.map((item,index,currentToDoItems) => {
-  //   if(item.id === +currentToDoItems[index].id){
-  //     item.status = !item.status; 
-  //   }
-
-  //   return item;
-  // });
-  // todoLeftItemsCount();
-  // saveToLocalStorage(newToDoItems);
   event.target.parentElement.classList.toggle("checked");
-  const currentItemId = Number(event.target.dataset.id);
+
+  const currentItemId = Number(event.target.parentElement.dataset.id);
   const newToDoItems = todoItems.map((item) => {
     if(item.id === currentItemId){
       item.status = !item.status; 
     }
 
     return item;
+
   });
   todoLeftItemsCount();
   saveToLocalStorage(newToDoItems);
@@ -83,46 +62,30 @@ function todoItemsSort(event){
         const todoCompletedItems = todoItems.filter((items) => items.status == true);
         showTodoItems(todoCompletedItems,todoListArea);
       break;
+      default:
+        console.log('No another types');
     }
 }
 
 // Счетчик для to do items
 function todoLeftItemsCount(){
-  const todoLeftItemsCount = todoItems.filter((items) => items.status == false);
-  todoLeftItems.innerHTML = `<span>${todoLeftItemsCount.length}</span> items left`;
+  const todoLeftItemsCount = todoItems.filter((items) => items.status === false);
+  todoLeftItems.innerHTML = `<div class="todoLeftItemsCount"><span>${todoLeftItemsCount.length}</span> items left</div>`;
 }
 
-function todoItemsClearCompleted(){
-    const todoItemsClearCompleted = todoItems.map((items,index,currentItems) => {
-        if(currentItems[index].id == items.id){
-          items.status = false;
-        }
-        return items;
-    });
-    saveToLocalStorage(todoItemsClearCompleted);
-    showTodoItems(todoItemsClearCompleted,todoListArea);
-}
+
 
 function deleteCurrentToDoItem(event){
+
   const currentToDoItemId = event.target.parentElement.getAttribute('data-id');
-  const deleteCurrentToDoItem = todoItems.filter((items) => items.id != currentToDoItemId);
+  todoItems.forEach((items,index) => {
+      if(items.id == currentToDoItemId){
+          todoItems.splice(index,1);
+      }
+  });
   
-  showTodoItems(deleteCurrentToDoItem,todoListArea);
-  saveToLocalStorage(deleteCurrentToDoItem);
-  
-  
-  console.log(currentToDoItemId);
-  console.log(currentToDoItemId);
-  //saveToLocalStorage(deleteCurrentToDoItem);
-    // showTodoItems(deleteCurrentToDoItem,todoListArea);
-  //console.log(deleteCurrentToDoItem);
-  // const deleteCurrentToDoItem = todoItems.map((items,index,currentItems) => {
-  //   if(items.id == currentItems[index].id){
-  //     todoItems.pop();
-  //   }
-  //   return items;
-  // });
-  //const currentToDoItemId = event.target.parentElement.getAttribute('data-id');
+  showTodoItems(todoItems,todoListArea);
+  saveToLocalStorage(todoItems);
   
 }
 
@@ -130,13 +93,43 @@ function saveToLocalStorage(items){
   localStorage.setItem('todoItems',JSON.stringify(items));
 }
 
+if(todoItems.length > 0){
+  showTodoItems(todoItems,todoListArea);
+}
 
-todoAddForm.addEventListener('submit',todoAdd);
-//changeItemStatusBtn.addEventListener('click',changeItemStatus);
+// ALL EVENTS
+
+todoAddForm.addEventListener('submit',function (event){
+  event.preventDefault();
+
+  const todoItemText = event.target.todoItem.value;
+  if(todoItemText.trim() !== ''){
+    const todoItem = {
+      id:Date.now(),
+      text: todoItemText,
+      status:false,
+    };
+    todoItems.unshift(todoItem);
+  }
+  
+  saveToLocalStorage(todoItems);
+  showTodoItems(todoItems,todoListArea);
+  this.reset();
+});
+
 todoItemsSortBtns.forEach((item) => {
   item.addEventListener('click',todoItemsSort);
 });
-todoItemsClearCompletedBtn.addEventListener('click',todoItemsClearCompleted);
+todoItemsClearCompletedBtn.addEventListener('click',function (){
+  const todoItemsClearCompleted = todoItems.map((items,index,currentItems) => {
+      if(currentItems[index].id == items.id){
+        items.status = false;
+      }
+      return items;
+  });
+  saveToLocalStorage(todoItemsClearCompleted);
+  showTodoItems(todoItemsClearCompleted,todoListArea);
+});
 
 
-showTodoItems(todoItems,todoListArea);
+

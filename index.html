@@ -25,13 +25,13 @@
         <form class="todo-add-form">
           <input type="text" id="myInput" name="todoItem" placeholder="Type your text..." required/>
         </form>
-        
+      
       </div>
       <!--todo-add-wrap-->
 
       <div class="todo-lists-wrap">
         <ul class="todo-lists">
-          <div>
+          <div class="dataLoading">
             <span>Список дел загружается......</span>
           </div>
         </ul>
@@ -39,7 +39,9 @@
       </div>
       <div class="todo-lists-filter">
         <div class="todoLeftItems">
-          <span>5</span> item left
+          <b class="todoLeftItemsCount">
+            <span>0</span> items left
+          </b><!--todoLeftItemsCount-->
         </div>
 
         <div class="todoItemsSort">
@@ -54,6 +56,7 @@
 
       </div>
     </div><!--Container-->
+    
     <script src="js/main.js"></script>
   </body>
 </html>
