@@ -15,7 +15,7 @@ function showTodoItems(items,todoListArea){
   todoListArea.innerHTML = '';
   items.forEach((item) => {
     const todoItemList = document.createElement('li');
-    todoItemList.setAttribute('data-id', item.id);
+    todoItemList.dataset.id =item.id;
     const changeStatusBtn = document.createElement('div');
     changeStatusBtn.classList.add('todoCheckItem');
     if(item.status) todoItemList.classList.add('checked');
@@ -24,7 +24,7 @@ function showTodoItems(items,todoListArea){
     delBtn.classList.add('close', 'fa', 'fa-trash-o');
     
     todoItemList.append(changeStatusBtn,delBtn);
-    todoListArea.appendChild(todoItemList);
+    todoListArea.append(todoItemList);
     changeStatusBtn.addEventListener('click',changeItemStatus);
     delBtn.addEventListener('click', deleteCurrentToDoItem);
   });
@@ -70,7 +70,9 @@ function todoItemsSort(event){
 // Счетчик для to do items
 function todoLeftItemsCount(){
   const todoLeftItemsCount = todoItems.filter((items) => items.status === false);
-  todoLeftItems.innerHTML = `<div class="todoLeftItemsCount"><span>${todoLeftItemsCount.length}</span> items left</div>`;
+  todoLeftItems.innerHTML = `<div class="todoLeftItemsCount">
+                                <span>${todoLeftItemsCount.length}</span> items left
+                              </div>`;
 }
 
 

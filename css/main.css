@@ -174,8 +174,18 @@ ul li.checked::before {
   border: 0;
   padding: 6px 0;
   color: #fff;
+  transition: background-color .3s;
 }
 
+.todoItemsSort .todoItemsSortBtns:hover{
+  cursor: pointer;
+  background-color: #8383de;
+}
+
+.todoItemsSort .todoItemsSortBtns:active{
+  cursor: pointer;
+  background-color: #3131db;
+}
 
 .todo-status-clear .todoItemsClearCompletedBtn{
   float: right;
@@ -186,6 +196,16 @@ ul li.checked::before {
   border: 0;
   padding: 6px 0;
   color: #fff;
+  transition: background-color .3s;
+}
+
+.todo-status-clear .todoItemsClearCompletedBtn:hover{
+  background-color: #d453da;
+  cursor: pointer;
+}
+.todo-status-clear .todoItemsClearCompletedBtn:active{
+  background-color: #a81caf;
+  cursor: pointer;
 }
 .todoLeftItemsCount{
   font-weight: bold;
